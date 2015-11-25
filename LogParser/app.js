@@ -9,8 +9,8 @@ var http = require('http');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
-
 var app = express();
+var config = require('./cred.json');
 
 // view engine setup
 app.set('port', process.env.PORT || 3000);
@@ -30,10 +30,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-app.use('/', routes);
+app.use('/', login);
 app.use('/users', users);
 app.use('/login', login);
 
+var http = require('http');
 
 
 // catch 404 and forward to error handler
@@ -66,9 +67,7 @@ app.use(function(err, req, res, next) {
 		error : {}
 	});
 });
-console.log("Hi");
 http.createServer(app).listen(app.get('port'), function() {
 	console.log('Express server listening on port ' + app.get('port'));
 });
-
 module.exports = app;
