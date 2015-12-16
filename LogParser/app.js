@@ -9,6 +9,7 @@ var http = require('http');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
+var search = require('./routes/search');
 var app = express();
 var config = require('./cred.json');
 
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', login);
 app.use('/users', users);
 app.use('/login', login);
+app.use('/search', search);
 
 var http = require('http');
 
@@ -67,6 +69,7 @@ app.use(function(err, req, res, next) {
 		error : {}
 	});
 });
+
 http.createServer(app).listen(app.get('port'), function() {
 	console.log('Express server listening on port ' + app.get('port'));
 });
